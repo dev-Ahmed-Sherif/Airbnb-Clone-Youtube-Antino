@@ -55,6 +55,8 @@ const RentModal = () => {
     },
   });
 
+  // This Variables are used for catching value changes using watch
+
   const category = watch("category");
   const location = watch("location");
   const guestCount = watch("guestCount");
@@ -159,11 +161,11 @@ const RentModal = () => {
           title="Where is your place located?"
           subtitle="Help guests find you!"
         />
-        {/* <CountrySelect 
-          value={location} 
-          onChange={(value) => setCustomValue('location', value)} 
+        <CountrySelect
+          value={location}
+          onChange={(value) => setCustomValue("location", value)}
         />
-        <Map center={location?.latlng} /> */}
+        {/* <Map center={location?.latlng} /> */}
       </div>
     );
   }
