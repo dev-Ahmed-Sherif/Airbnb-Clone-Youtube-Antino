@@ -10,9 +10,9 @@ import { useRouter } from "next/navigation";
 import useRentModal from "@/app/hooks/useRentModal";
 
 import Modal from "./Modal";
+import Heading from "../Heading";
 import { categories } from "../header/Categories";
 import Input from "../inputs/Input";
-import Heading from "../Heading";
 import CategoryInput from "../inputs/CategoryInput";
 import CountrySelect from "../inputs/CountrySelect";
 // import Counter from "../inputs/Counter";
@@ -64,9 +64,13 @@ const RentModal = () => {
   const bathroomCount = watch("bathroomCount");
   const imageSrc = watch("imageSrc");
 
-  //   const Map = useMemo(() => dynamic(() => import('../Map'), {
-  //     ssr: false
-  //   }), [location]);
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("../Map"), {
+        ssr: false,
+      }),
+    [location]
+  );
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -162,10 +166,13 @@ const RentModal = () => {
           subtitle="Help guests find you!"
         />
         <CountrySelect
+          className="z-10"
           value={location}
           onChange={(value) => setCustomValue("location", value)}
         />
-        {/* <Map center={location?.latlng} /> */}
+        <Map 
+        className="z-5"
+        center={location?.latlng} />
       </div>
     );
   }
